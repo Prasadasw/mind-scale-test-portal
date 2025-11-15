@@ -1,7 +1,6 @@
 import playstore from '../assets/img/google-play.png'
-import appstore from '../assets/img/app-store.png'
 
-function DownloadPopup({ isOpen, onClose }) {
+function DownloadPopup({ isOpen, onClose, onPlayStoreDownload }) {
   if (!isOpen) return null
 
   return (
@@ -40,14 +39,15 @@ function DownloadPopup({ isOpen, onClose }) {
             <p className="text-gray-600">Get exclusive premium benefits</p>
           </div>
     {/* Download Buttons */}
-    <div className="space-y-3 mb-6">
+          <div className="space-y-3 mb-6">
             <a 
-              href="#" 
+              href="#download-apk" 
               className="block w-full hover:opacity-90 transition-opacity"
               onClick={(e) => {
                 e.preventDefault()
-                // Add your Google Play Store link here
-                window.open('#', '_blank')
+                if (onPlayStoreDownload) {
+                  onPlayStoreDownload()
+                }
               }}
             >
               <img src={playstore} alt="Get it on Google Play" className="w-full h-auto max-h-14 object-contain" />
